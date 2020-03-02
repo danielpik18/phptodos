@@ -1,0 +1,91 @@
+<?php
+
+//  Create instance of controller
+$todoController = new TodoController($conn);
+
+//  Get todos
+$todos = $todoController->index();
+
+?>
+
+<div class="wrapper">
+    <h1 class="titleHeading">Todo list.</h1>
+
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+
+        <div class="formGroup">
+            <label for="title">Title</label>
+            
+            <input
+                class="formControl"
+                type="text"
+                name="title"
+                placeholder="Cook dinner"
+            />
+
+            <span class="errorMessage">
+                <?php if (!empty($error_messages["title"])) {echo $error_messages["title"];} ?>
+            </span>
+        </div>
+
+        <button class="addTodoButton" type="submit">Add<i class="fas fa-plus"></i></button>
+    </form>
+
+    <ul class="todosList">
+
+    <?php
+
+    if (!empty($todos)) {
+        foreach ($todos as $todo) {
+            ?>
+                <li
+                    class="todosList__item <?php if ($todo['completed'] == 1) {
+                echo 'todosList__item--completed';
+            } ?>"
+                >
+                    <div>
+                        <?php echo $todo['title']; ?>
+                    </div>
+
+                    <div class="actionButtons">
+                        <?php
+
+                        if ($todo['completed'] == 0) {
+                            ?>
+
+                                <a
+                                    class="actionButtons__success"
+                                    href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>?complete_todo=<?php echo $todo['id'] ?>"
+                                >
+                                    Complete
+                                </a>
+                        
+                            <?php
+                        } else {
+                            ?>
+
+                                <a href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>?uncomplete_todo=<?php echo $todo['id'] ?>">
+                                    Uncomplete
+                                </a>
+
+                            <?php
+                        } ?>
+                        
+                        <a
+                            class="actionButtons__danger"
+                            href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>?delete_todo=<?php echo $todo['id'] ?>"
+                        >
+                            Delete
+                        </a>
+                    </div>
+                </li>
+
+            <?php
+        }
+    } else {
+        echo "You haven't created any todos";
+    }
+
+    ?>
+    </ul>
+</div>

@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css?family=Damion&display=swap');
+
+body{
+    font-family: 'calibri', sans-serif;
+}
+
+.titleHeading{
+    font-family: 'Damion', sanf-serif;
+    font-size: 2.6rem;
+}
+
+.errorMessage{
+    margin-top: .3rem;
+    color: red;
+    font-size: .85rem;
+}
+
+.wrapper{
+    position: absolute;
+    width: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.formGroup{
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup input{
+    margin-top: .2rem;
+    border: solid 1px grey;
+    padding: .6rem;
+}
+
+.formGroup label{
+    color: grey;
+}
+
+.todosList{
+    height: 20rem;
+    padding: 1rem 0;
+    overflow-y: scroll;
+}
+
+
+/* width */
+.todosList::-webkit-scrollbar {
+    width: 6px;
+}
+  
+/* Track */
+.todosList::-webkit-scrollbar-track {
+background: #f1f1f1;
+}
+
+/* Handle */
+.todosList::-webkit-scrollbar-thumb {
+    background: rgb(190, 190, 190);
+}
+  
+/* Handle on hover */
+.todosList::-webkit-scrollbar-thumb:hover {
+background: rgb(121, 121, 121);
+}
+
+.todosList__item{
+    padding: 1.2rem 1rem;
+    margin-right: 1rem;
+    margin-bottom: .45rem;
+    border: grey 1px solid;
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    opacity: .9;
+}
+
+.todosList__item:hover{
+    opacity: 1;
+}
+
+.todosList__item--completed{
+    border: green 1px solid;
+    color: grey;
+    background-color: rgba(156, 255, 161, 0.4);
+    text-decoration: line-through;
+}
+
+.actionButtons{
+    display: flex;
+    opacity: 0;
+    transition: opacity .1s;
+}
+
+.todosList__item:hover .actionButtons{
+    opacity: 1;
+}
+
+.actionButtons a{
+    display: block;
+    font-weight: bold;
+    font-size: .75rem;
+    padding: .4rem .6rem;
+    text-decoration: none;
+    border: grey 1px solid;
+    border-radius: 5%;
+    color: black;
+    cursor: pointer;
+    opacity: .75;
+}
+
+.actionButtons a:hover{
+    opacity: 1;
+}
+
+.actionButtons__danger{
+    color: red !important;
+}
+
+.actionButtons__danger:hover{
+    border: red 1px solid !important;
+}
+
+.actionButtons__success{
+    color: green !important;
+}
+
+.actionButtons__success:hover{
+    border: green 1px solid !important;
+}
+
+.actionButtons a:not(:last-child){
+    margin-right: 1rem;
+}
+
+/**/
+
+.addTodoButton{
+    margin-top: 1rem;
+    padding: .4rem;
+    border: solid 1px green;
+    cursor: pointer;
+    opacity: .85;
+    color: green;
+}
+
+.addTodoButton:hover, .addTodoButton:focus{
+    opacity: 1;
+    color: white;
+    background-color: rgba(38, 156, 44, 0.8);
+}
+
+.addTodoButton i{
+    margin-left: .4rem;
+}
